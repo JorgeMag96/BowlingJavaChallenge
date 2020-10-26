@@ -1,4 +1,4 @@
-package models;
+package models.games.bowling;
 
 import java.util.List;
 
@@ -33,6 +33,13 @@ public class ScoreFrame {
 		return false;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "ScoreFrame [pinfalls=" + pinfalls + ", score=" + score + "]";
+	}
+
 	private boolean isFinalFrame;
 	private List<String> pinfalls;
 	private int score;

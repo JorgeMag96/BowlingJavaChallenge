@@ -1,9 +1,6 @@
 package utils;
 
-public class ScorePrinter {
+public interface ScorePrinter {
 
-	public static void printResults() {
-		
-		//TODO: Implement this.
-	}
+	public void printResults();
 }

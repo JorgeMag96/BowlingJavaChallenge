@@ -2,7 +2,9 @@ package models;
 
 import java.util.List;
 
-public abstract class Game{
+import utils.ScorePrinter;
+
+public abstract class Game implements ScorePrinter{
 	
 	public Game(List<? extends Player> players) {
 		this.players = players;
@@ -14,5 +16,4 @@ public abstract class Game{
 
 	protected List<? extends Player> players;
 	
-	public static final String BOWLING = "bowling";
 }

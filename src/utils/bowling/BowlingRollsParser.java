@@ -1,32 +1,18 @@
-package utils;
+package utils.bowling;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Game;
-import models.Player;
-import models.games.IBowling;
+import models.games.BowlingGame;
 import models.players.BowlingPlayer;
+import utils.DataParser;
 
-public class BowlingRollsParser {
+public class BowlingRollsParser implements DataParser<BowlingPlayer> {
 
-	/**
-	 * Parse the given text file into a list of players.<br><br>
-	 * 
-	 * Text file should use the following format:<br><br>
-	 * [player name] [roll]<br>
-	 * [player name] [roll]<br>
-	 * [...........] [....]
-	 * 
-	 * @param file
-	 * @return List of Player objects
-	 * @throws Exception - In case of a parse exception.
-	 */
-	public static List<BowlingPlayer> parseRolls(File file) throws Exception {
+	public List<BowlingPlayer> parseData(File file) throws Exception {
 
 		try {
 			HashMap<String, BowlingPlayer> players = new HashMap<>();
@@ -60,6 +46,7 @@ public class BowlingRollsParser {
 				System.out.print(k);
 				System.out.println(p.getRolls());
 			});
+			System.out.println();
 
 			return new ArrayList<BowlingPlayer>(players.values());
 
@@ -79,7 +66,7 @@ public class BowlingRollsParser {
 	 */
 	private static boolean validRoll(String roll) throws Exception {
 		
-		if (!roll.equals(IBowling.FOUL)) {
+		if (!roll.equals(BowlingGame.FOUL)) {
 			try {
 				int value = Integer.parseInt(roll);
 				if (value < 0 || value > 10) {

@@ -2,15 +2,18 @@ import java.io.File;
 
 import models.Game;
 import models.games.BowlingGame;
-import utils.BowlingRollsParser;
+import models.players.BowlingPlayer;
+import utils.DataParser;
+import utils.GameTypes;
 import utils.ScorePrinter;
+import utils.bowling.BowlingRollsParser;
 
 public class Play {
 
 	public static void main(String[] args) {
 
 		// Example: play bowling test1
-		String gameName = args[0];
+		String gameType = args[0];
 		File gameData = new File(args[1]);
 
 		if (!gameData.exists()) {
@@ -22,14 +25,16 @@ public class Play {
 			
 			Game game;
 			
-			if (gameName.equalsIgnoreCase(Game.BOWLING)) {
+			if (gameType.equalsIgnoreCase(GameTypes.BOWLING.toString())) {
 				
-				game = new BowlingGame(BowlingRollsParser.parseRolls(gameData));
-				ScorePrinter.printResults();
+				DataParser<BowlingPlayer> dataParser = new BowlingRollsParser();
+				game = new BowlingGame(dataParser.parseData(gameData));
 			}
 			else {
 				throw new Exception("Please enter a valid game name.");
 			}
+			
+			game.printResults();
 
 		} catch (Exception e) {
 			e.printStackTrace();

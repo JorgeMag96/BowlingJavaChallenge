@@ -1,6 +1,6 @@
 package models;
 
-public class Player{
+public abstract class Player{
 
 	public Player (String name) {
 		this.name = name;
