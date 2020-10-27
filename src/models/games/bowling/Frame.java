@@ -1,11 +1,40 @@
 package models.games.bowling;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ScoreFrame {
+import models.games.BowlingGame;
+
+public class Frame {
 	
-	public ScoreFrame(boolean isFinalFrame) {
-		this.isFinalFrame = isFinalFrame;
+	public Frame() {
+		this.remainingPins = 10;
+		this.score = 0;
+		this.pinfalls = new ArrayList<>();
+	}
+	
+	public void registerRoll(String roll) {
+		
+		if(roll.equals(BowlingGame.FOUL)) {
+			// Pins don't change.
+		}
+		else if(roll.equals(BowlingGame.SPARE) || 
+				roll.equals(BowlingGame.STRIKE)) {
+			remainingPins = 0;
+		}
+		else {
+			remainingPins -= Integer.parseInt(roll);
+		}
+		
+		pinfalls.add(roll);
+	}
+	
+	public int getRemainingPins() {
+		return remainingPins;
+	}
+	
+	public void resetPins() {
+		remainingPins = 10;
 	}
 	
 	public List<String> getPinfalls(){
@@ -20,27 +49,13 @@ public class ScoreFrame {
 		this.score = score;
 	}
 	
-	public boolean registerRoll(String roll) throws Exception {
-		
-		if(pinfalls.size() > 1 || !isFinalFrame) {
-			throw new Exception("");
-		}
-		else {
-			
-		}
-		//TODO: Logic to register a roll in the current frame.
-		
-		return false;
-	}
-	
-	
-	
 	@Override
 	public String toString() {
-		return "ScoreFrame [pinfalls=" + pinfalls + ", score=" + score + "]";
+		return "ScoreFrame [pinfalls=" + pinfalls +"]";
 	}
 
-	private boolean isFinalFrame;
-	private List<String> pinfalls;
+	private int remainingPins;
 	private int score;
+	private List<String> pinfalls;
+	
 }

@@ -21,6 +21,6 @@ public interface DataParser<T extends Player> {
 	 * @return List of Player objects
 	 * @throws Exception - In case of a parse exception.
 	 */
-	public List<T> parseData(File file) throws Exception;
+	public List<T> execute(File file) throws Exception;
 	
 }

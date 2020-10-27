@@ -25,6 +25,14 @@ public class BowlingPlayer extends Player{
 		return this.rolls.add(roll);
 	}
 	
+	public int getFinalScore() {
+		return this.finalScore;
+	}
+	
+	public void setFinalScore(int finalScore) {
+		this.finalScore = finalScore;
+	}
 	
 	private Queue<String> rolls;
+	private int finalScore = 0;
 }

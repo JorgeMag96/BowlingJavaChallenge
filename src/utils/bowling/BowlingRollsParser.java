@@ -12,7 +12,7 @@ import utils.DataParser;
 
 public class BowlingRollsParser implements DataParser<BowlingPlayer> {
 
-	public List<BowlingPlayer> parseData(File file) throws Exception {
+	public List<BowlingPlayer> execute(File file) throws Exception {
 
 		try {
 			HashMap<String, BowlingPlayer> players = new HashMap<>();
@@ -41,13 +41,6 @@ public class BowlingRollsParser implements DataParser<BowlingPlayer> {
 			}
 			sc.close();
 
-			// TODO: Remove this code when finish.
-			players.forEach((k, p) -> {
-				System.out.print(k);
-				System.out.println(p.getRolls());
-			});
-			System.out.println();
-
 			return new ArrayList<BowlingPlayer>(players.values());
 
 		} catch (Exception e) {
@@ -64,7 +57,7 @@ public class BowlingRollsParser implements DataParser<BowlingPlayer> {
 	 * @throws Exception	In case of an invalid roll value.<br>
 	 * @throws NumberFormatException	In case of an invalid roll format.
 	 */
-	private static boolean validRoll(String roll) throws Exception {
+	public boolean validRoll(String roll) throws Exception {
 		
 		if (!roll.equals(BowlingGame.FOUL)) {
 			try {

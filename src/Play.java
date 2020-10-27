@@ -1,3 +1,4 @@
+
 import java.io.File;
 
 import models.Game;
@@ -5,7 +6,6 @@ import models.games.BowlingGame;
 import models.players.BowlingPlayer;
 import utils.DataParser;
 import utils.GameTypes;
-import utils.ScorePrinter;
 import utils.bowling.BowlingRollsParser;
 
 public class Play {
@@ -28,7 +28,7 @@ public class Play {
 			if (gameType.equalsIgnoreCase(GameTypes.BOWLING.toString())) {
 				
 				DataParser<BowlingPlayer> dataParser = new BowlingRollsParser();
-				game = new BowlingGame(dataParser.parseData(gameData));
+				game = new BowlingGame(dataParser.execute(gameData));
 			}
 			else {
 				throw new Exception("Please enter a valid game name.");
